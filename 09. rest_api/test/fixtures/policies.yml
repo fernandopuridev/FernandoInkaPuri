@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data_emissao: 2024-02-29 15:32:15
+  data_fim_cobertura: 2024-02-29 15:32:15
+  segurado: one
+  veiculo: one
+
+two:
+  data_emissao: 2024-02-29 15:32:15
+  data_fim_cobertura: 2024-02-29 15:32:15
+  segurado: two
+  veiculo: two

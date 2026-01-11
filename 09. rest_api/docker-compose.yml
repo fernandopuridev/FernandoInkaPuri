@@ -1,0 +1,45 @@
+services:
+  rest_api:
+    container_name: rest_api
+    working_dir: /rest_api
+    image: ruby:3.2
+    command: bash -c "rm -f tmp/pids/server.pid && bin/setup && bundle exec rails s -p 3005 -b '0.0.0.0'"
+    volumes:
+      - .:/rest_api
+      - rubygems:/usr/local/bundle
+    ports:
+      - "3005:3005"
+    depends_on:
+      - postgres
+    networks:
+      - policy-network
+  postgres:
+    hostname: postgres
+    image: postgres:16
+    volumes:
+      - database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    networks:
+      - policy-network
+  sneakers:
+    image: ruby:3.2
+    hostname: sneakers
+    command:  bash -c "cd /app && WORKERS=PolicyReceiverWorker rake sneakers:run"
+    volumes:
+      - .:/app
+      - rubygems:/usr/local/bundle
+    depends_on:
+      - rest_api
+    networks:
+      - policy-network
+volumes:
+  database:
+  rubygems:
+
+networks:
+  policy-network:
+    name: policy_network
+    external: true

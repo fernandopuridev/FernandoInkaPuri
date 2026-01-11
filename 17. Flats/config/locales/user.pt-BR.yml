@@ -1,0 +1,16 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      user: 'Locador'
+    attributes:
+      user:
+        password: 'Senha'
+        remember_me: 'Salvar senha'
+        email: 'E-mail'
+    views:
+      new:
+        submit: 'Entrar'    
+        
+        
+        

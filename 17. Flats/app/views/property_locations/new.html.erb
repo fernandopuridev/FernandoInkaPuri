@@ -1,0 +1,14 @@
+<h1> Flats </h1>
+<h3> Digite o nome da Região que deseja cadastrar</h3>
+<br>
+<% if @property_location.errors.any? %>
+    <% @property_location.errors.full_messages.each do |erro|%>
+        <%= erro %>
+    <% end %>
+<% end %>
+
+<%= form_with model:@property_location do |f| %>
+    <%= f.label :name, 'Nome da região' %>
+    <%= f.text_field :name %>
+    <%= f.submit 'Salvar' %>
+<% end %>

@@ -1,0 +1,11 @@
+<h1>Meus Imóveis</h1>
+<% if @properties.empty? %>
+    <%= flash.now[:notice] = 'Você ainda não cadastrou imóveis'%>
+    <%= link_to 'Cadastre seu primeiro imóvel agora', new_property_path%>
+<% end %>
+
+<% @properties.each do |p|%>
+    <p><%= link_to(p.title, p) %></p>
+    <p><%= p.description %></p>
+    <p> Quartos: <%=p.rooms %></p><br>
+<% end %>

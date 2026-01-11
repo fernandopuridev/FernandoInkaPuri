@@ -1,0 +1,46 @@
+<h1><%= t('.title') %></h1>
+
+<% if @property.errors.any? %>
+  <ul>
+    <% @property.errors.full_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: @property) do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+  <div>
+    <%= f.label :rooms, 'Quartos' %>
+    <%= f.number_field :rooms %>
+  </div>
+  <div>
+    <%= f.label :bathrooms, 'Banheiros' %>
+    <%= f.number_field :bathrooms %>
+  </div>
+  <div>
+    <%= f.label :daily_rate, 'Diária' %>
+    <%= f.text_field :daily_rate %>
+  </div>
+  <div>
+    <%= f.label :property_type_id, "Tipo" %>
+    <%= f.collection_select :property_type_id, PropertyType.all, :id, :name, prompt: 'Escolha um tipo' %>
+  </div>
+  <div>
+    <%= f.check_box :pets %>
+    <%= f.label :pets, 'Aceita Pets' %>
+  </div>
+  <div>
+    <%= f.check_box :parking_slot %>
+    <%= f.label :parking_slot, 'Vaga de Estacionamento' %>
+  </div>
+  <%= f.submit 'Enviar' %>
+<% end %>
+

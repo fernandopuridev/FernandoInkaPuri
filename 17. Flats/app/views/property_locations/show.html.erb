@@ -1,0 +1,25 @@
+<h1>Flats</h1>
+<h3>Lista de propriedades do tipo  </h3>
+<br>
+<% @location.each do |propriedade| %>
+    <p><b><%= propriedade.title %></b></p>
+    <dt>Tipo: <%= propriedade.property_type.name%></dt>
+    <dt><%= propriedade.description %></dt>
+    <dt>Região: <%= propriedade.property_location.name %></dt>
+    <dt>Quartos: <%= propriedade.rooms %></dt>
+    <%if propriedade.parking_slot == true %>
+        <dt>Estacionamento: Sim </dt>
+    <%else%>  
+        <dt>Estacionamento: Não </dt>
+    <%end%>
+    <dt>Banheiros: <%= propriedade.bathrooms %> </dt>
+    
+    <%if propriedade.pets == true %>
+        <dt>Aceita Pets: Sim </dt>
+    <%else%>  
+        <dt>Aceita Pets: Não </dt>
+    <%end%> 
+    <dt>Diária: 
+    <%= number_to_currency(propriedade.daily_rate, unit:"R$", separator:",", format:"%u %n") %>
+    </dt><br><br>
+  <%end%>

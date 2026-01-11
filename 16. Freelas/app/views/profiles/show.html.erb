@@ -1,0 +1,17 @@
+<h2><%= @profile.social_name %></h2>
+<% if user_signed_in? %>
+  <%= link_to 'Marcar como favorito', set_favorite_profile_path(@profile.id), method: :post %>
+  <% if @fav %>
+      <p>Você marcou este profissional como Favorito!</p>
+  <% end %>
+<% end %>
+<% if @profile.avatar.attached? %>
+    <p><%= image_tag(@profile.avatar, size: "260x180" )%></p>
+<%end%>
+<p>Nota: <%= @nota %></p>
+<p><%= @profile.name %></p>
+<p><%= I18n.l(@profile.birth_date) %></p>
+<p><%= @profile.formation %></p>
+<p><%= @profile.description %></p>
+<p><%= @profile.experience %></p>
+<%= link_to('Editar Perfil', edit_profile_path) if @profile.professional == current_professional %>

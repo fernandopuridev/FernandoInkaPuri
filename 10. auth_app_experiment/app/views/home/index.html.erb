@@ -1,0 +1,33 @@
+<% if user_signed_in? %>
+  <h2> Bem vindo <%=current_user.email%>! </h2>
+  <%= button_to "logout", destroy_user_session_path, method: :delete  %>
+  <br>
+
+  <%= button_to "Criar nova apólice", policies_new_path, method: :get %>
+
+  <h1> Lista de Apólices cadastradas </h1>
+  <% if @request_completed %>
+    <% if @policies.present? %>
+      <table>
+        <tr>
+          <th>Id</th>
+          <th>Data de Emissão</th>
+          <th>Nome do Segurado</th>
+          <th>CPF do Segurado</th>
+        </tr>
+      <% @policies.each do |policy| %>
+        <tr>
+          <td> <%= policy["policyId"] %> </td>
+          <td> <%= policy["dataEmissao"] || "Não Registrado" %> </td>
+          <td> <%= policy["segurado"]["nome"] %> </td>
+          <td> <%= policy["segurado"]["cpf"] %> </td>
+        </tr>
+      <% end %>
+      </table>
+    <% else %>
+      <p> No momento não há nenhuma apólice cadastrada </p>
+    <% end %>
+  <% else %>
+    <%= @error_message %>
+  <% end %>
+<% end %>

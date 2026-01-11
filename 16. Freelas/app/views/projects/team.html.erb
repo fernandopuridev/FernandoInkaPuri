@@ -1,0 +1,11 @@
+<h2><%= @project.title %></h2>
+<%= @openn %>
+<h4>Lista dos aprovados para o projeto <%= @project.title %></h4>
+<% @proposals.each do |prop| %>
+    <p><%= prop.professional.profile.social_name %><p>
+    <p><%= prop.professional.profile.formation %><p>
+    <p><%= prop.reason %><p>
+    <% if user_signed_in? && @project.user == current_user %>
+      <p><%= link_to "Proposta de #{prop.professional.profile.social_name}", prop%></p><br>
+    <% end %><br>
+<% end %>

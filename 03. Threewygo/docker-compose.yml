@@ -1,0 +1,34 @@
+services:
+  threewygo_backend:
+    container_name: threewygo_backend
+    build:
+      context: ./threewygo_backend
+    volumes:
+      - ./threewygo_backend:/threewygo_backend
+      - rubygems:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:16
+    volumes:
+      - database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+  threewygo_frontend:
+    container_name: threewygo_frontend
+    build:
+      context: ./threewygo_frontend
+    volumes:
+    - ./threewygo_frontend:/threewygo_frontend
+    ports:
+      - "3001:3000"
+    depends_on:
+      - threewygo_backend
+  
+volumes:
+  database:  
+  rubygems:

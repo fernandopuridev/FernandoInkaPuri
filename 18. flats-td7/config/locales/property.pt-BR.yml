@@ -1,0 +1,15 @@
+---
+pt-BR:
+  pending: 'Pendente'
+  accepted: 'Aceita'
+  rejected: 'Rejeitada'
+  activerecord:
+    models:
+      property: 'Propriedade'
+    attributes:
+      property:
+        title: 'Título'
+        description: 'Descrição'
+  properties:
+    new:
+      title: 'Cadastro de Imóvel'

@@ -1,0 +1,7 @@
+<br>
+
+<% @projects.each do |projeto| %>
+    <b><%= link_to projeto.title, project_path(projeto) %></b>
+    <p>Descrição: <%= projeto.description %></p>
+    <p>Habilidades: <%= projeto.skills %></p>
+<% end %>

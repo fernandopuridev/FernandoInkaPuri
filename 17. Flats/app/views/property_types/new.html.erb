@@ -1,0 +1,13 @@
+<h1> Cadastrar novo tipo de imóvel</h1>
+
+<% if @property_type.errors.any?%>
+    <% @property_type.errors.full_messages.each do |erro| %>
+        <%= erro %>
+    <% end %>
+<% end %>
+
+<%= form_with model: @property_type do |form| %>
+    <%= form.label :name, 'Tipo de Imóvel' %>
+    <%= form.text_field :name %>
+    <%= form.submit 'Salvar' %>
+<% end %>    

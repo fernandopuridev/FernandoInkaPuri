@@ -1,0 +1,14 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      user: 'Contratador'
+    attributes:
+      user:
+        password: 'Senha'
+        password_confirmation: 'Confirme a senha'
+        remember_me: 'Lembrar senha'
+  user:
+    create:
+      success: 'Contratador cadastrado com sucesso!'
+      failure: 'Erro ao cadastrar Contratador!'

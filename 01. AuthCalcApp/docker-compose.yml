@@ -1,0 +1,16 @@
+services:
+  frontend:
+    build:
+      context: ./react-calc-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+  backend:
+    build:
+      context: ./node_auth_api
+    ports:
+      - "3001:3001"
+    environment:
+      - JWT_SECRET=Math
+      - JWT_EXPIRES_IN=1h

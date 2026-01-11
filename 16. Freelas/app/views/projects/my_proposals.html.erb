@@ -1,0 +1,16 @@
+<% @proposals.each do |prop| %>
+  <h3><%= prop.project.title %></h3>
+  <p>Motivo: <%= prop.reason %></p>
+  <p>Valor/hora: <%= number_to_currency(prop.hour_value) %></p>
+  <p>Horas disponíveis por semana: <%= prop.hours_week %>
+  <p>Expectativa: <%= prop.expectation %></p>
+  <p><% if prop.status_proposal == 'not_rated'%>
+        Status: Pendente</p>
+     <% elsif prop.status_proposal == 'accepted' %>
+        Status: Aceita</p>
+    <% elsif prop.status_proposal == 'rejected' %>
+        Status: Rejeitada</p>
+    <% end %>
+  <p><%= link_to 'Ver Proposta', proposal_path(prop) %></p>
+<br>
+<% end %>

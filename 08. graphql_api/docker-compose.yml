@@ -1,0 +1,32 @@
+services:
+  graphql_api:
+    container_name: graphql_api
+    build: .
+    command: bash -c "rm -f graphql_api/tmp/pids/server.pid && bundle exec rails s -p 3001 -b '0.0.0.0'"
+    volumes:
+      - .:/graphql_api
+    ports:
+      - "3001:3001"
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - policy-network
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+    - "5672:5672"
+    - "15672:15672"
+    volumes:
+    - /var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmqctl","await_startup"]
+      interval: 5s
+    networks:
+      - policy-network
+
+networks:
+  policy-network:
+    name: policy_network
+    external: true
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flats</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+<nav>
+  <% if property_owner_signed_in? %>
+    <ul>
+      <li><%= link_to 'Meus Imóveis', my_properties_properties_path %></li>
+      <li><%= link_to 'Cadastrar Imóvel', new_property_path %></li>
+      <li><%= current_property_owner.email %></li>
+      <li><%= link_to 'Logout', destroy_property_owner_session_path, method: :delete %></li>
+    </ul>
+  <% elsif user_signed_in? %>
+    <ul>
+      <li><%= link_to current_user.email, my_profile_path %></li>
+      <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+    </ul>
+  <% else %>
+    <p><%= link_to 'Entrar como proprietário', new_property_owner_session_path %></p>
+    <p><%= link_to 'Entrar como locador', new_user_session_path %></p>
+  <% end %>
+</nav>
+    <p><%= notice %></p>
+    <p><%= alert %></p>
+    <%= yield %>
+  </body>
+</html>
